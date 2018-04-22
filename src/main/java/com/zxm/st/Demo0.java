@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.spi.LoggerFactory;
 
 public class Demo0 {
-	private static final int MSG_SIZE = 100;
+	private static final int MSG_SIZE = 10;
 	private static final String TOPIC = "stock-quotation";
 
 	public static void main(String[] args) {
@@ -19,11 +19,11 @@ public class Demo0 {
 				info = producer.createQuotationInfo();
 				record = new ProducerRecord(TOPIC, null, info.getTradeTime(), info.getStockCode(), info.toString());
 				producer.sendAsync(record);
-				if (num++ % 10 == 0) {
+				/*if (num++ % 10 == 0) {
 					Thread.sleep(2000);
-				}
+				}*/
 			}
-		} catch (InterruptedException e) {
+		} catch (/*Interrupted*/Exception e) {
 			e.printStackTrace();
 		}finally {
 			producer.close();
